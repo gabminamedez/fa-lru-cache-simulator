@@ -1,0 +1,50 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <title><%= title %></title>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Full Associative Mapping - Least Recently Used (LRU) Simulator</h1>
+            <p><i>This application was developed by <b>Anjelo Antioquia, Gabriel Minamedez, Joshua Ranjo, and Julian Sunpayco</b> of CSARCH2 S13.</i></p>
+            <p>This is a web application that simulates the cache replacement algorithm of full associative mapping (LRU). Input your values below and click simulate to begin:</p>
+            <hr>
+
+            <form method="post" action="/">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cache_size">Cache Memory Size (in blocks):</label>
+                        <input required name="cache_size" id="cache_size" type="number" class="form-control" placeholder="Add Cache Memory Size (in blocks)">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="block_size">Block Size (in words):</label>
+                        <input required name="block_size" id="block_size" type="number" class="form-control" placeholder="Add Block Size (in words)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cat">Cache Access Time (in ns):</label>
+                        <input required name="cat" id="cat" type="number" class="form-control" placeholder="Add Cache Access Time (in ns)">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mat">Memory Access Time (in ns):</label>
+                        <input required name="mat" id="mat" type="number" class="form-control" placeholder="Add Memory Access Time (in ns)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mm_size">Main Memory Size (in blocks):</label>
+                    <input required name="mm_size" id="mm_size" type="number" class="form-control" placeholder="Add Main Memory Size (in blocks)">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Simulate</button>
+            </form>
+        </div>
+    </body>
+
+</html>

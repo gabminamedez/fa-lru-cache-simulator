@@ -1,0 +1,34 @@
+{
+  "name": "fa-lru-cache-simulator",
+  "version": "1.0.0",
+  "description": "This is a web application that simulates the cache replacement algorithm of full associative mapping (LRU).",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabminamedez/fa-lru-cache-simulator.git"
+  },
+  "keywords": [
+    "Cache",
+    "Memory"
+  ],
+  "author": "Gabriel Minamedez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabminamedez/fa-lru-cache-simulator/issues"
+  },
+  "homepage": "https://github.com/gabminamedez/fa-lru-cache-simulator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
