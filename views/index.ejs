@@ -41,10 +41,35 @@
                     <label for="mm_size">Main Memory Size (in blocks):</label>
                     <input required name="mm_size" id="mm_size" type="number" class="form-control" placeholder="Add Main Memory Size (in blocks)">
                 </div>
+
+                <label>Add Main Memory Block Sequence:</label>
+                <p id="tip"><i>(Tip: Input an integer value n for the <b>Main Memory Size</b> first, deselect that input bar, and you will see n amount of inputs appear below this. Once you see those, you can start entering the values for your Main Memory Block Sequence.)</i></p>
+                <div id="mm_sequence">
+
+                </div>
                 
                 <button type="submit" class="btn btn-primary">Simulate</button>
             </form>
         </div>
+
+        <script>
+            document.getElementById("mm_size").addEventListener("change", addSequence);
+            
+            function addSequence() {
+                var parent = document.getElementById("mm_sequence");
+                while(parent.firstChild){
+                    parent.firstChild.remove();
+                }
+
+                var x = document.getElementById("mm_size").value;
+                for(var i = 0; i < x; i++){
+                    var div = document.createElement("div");
+                    div.className = "form-group";
+                    div.innerHTML = `<input required name="mm_sequence${i}" id="mm_sequence${i}" type="number" class="form-control" placeholder="Add Main Memory Block Order #${i}">`;
+                    document.getElementById("mm_sequence").appendChild(div);
+                }
+            }
+        </script>
     </body>
 
 </html>
