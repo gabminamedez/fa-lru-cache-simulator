@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <title><%= title %></title>
+        <title>Home</title>
     </head>
 
     <body>
@@ -12,9 +12,10 @@
             <h1>Full Associative Mapping - Least Recently Used (LRU) Simulator</h1>
             <p><i>This application was developed by <b>Anjelo Antioquia, Gabriel Minamedez, Joshua Ranjo, and Julian Sunpayco</b> of CSARCH2 S13.</i></p>
             <p>This is a web application that simulates the cache replacement algorithm of full associative mapping (LRU). Input your values below and click simulate to begin:</p>
+
             <hr>
 
-            <form method="post" action="/">
+            <form method="post" action="/results">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="cache_size">Cache Memory Size (in blocks):</label>
@@ -25,6 +26,20 @@
                         <input required name="block_size" id="block_size" type="number" class="form-control" placeholder="Add Block Size (in words)">
                     </div>
                 </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="mm_size">Main Memory Size (in blocks):</label>
+                    <input required name="mm_size" id="mm_size" type="number" class="form-control" placeholder="Add Main Memory Size (in blocks)">
+                </div>
+
+                <label>Add Main Memory Block Sequences, with numbers separated by space (e.g. 12 1 4):</label>
+                <div id="mm_sequence">
+                    <input required name="mm_sequence" id="mm_sequence" type="text" class="form-control" placeholder="Add Main Memory Block Sequence, with numbers separated by space (e.g. 12 1 4)">
+                </div>
+
+                <br>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -37,22 +52,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="mm_size">Main Memory Size (in blocks):</label>
-                    <input required name="mm_size" id="mm_size" type="number" class="form-control" placeholder="Add Main Memory Size (in blocks)">
-                </div>
+                <hr>
 
-                <label>Add Main Memory Block Sequence:</label>
-                <p id="tip"><i>(Tip: Input an integer value n for the <b>Main Memory Size</b> first, deselect that input bar, and you will see n amount of inputs appear below this. Once you see those, you can start entering the values for your Main Memory Block Sequence.)</i></p>
-                <div id="mm_sequence">
-
-                </div>
-                
                 <button type="submit" class="btn btn-primary">Simulate</button>
             </form>
         </div>
 
-        <script>
+        <!-- <script>
             document.getElementById("mm_size").addEventListener("change", addSequence);
             
             function addSequence() {
@@ -69,7 +75,7 @@
                     document.getElementById("mm_sequence").appendChild(div);
                 }
             }
-        </script>
+        </script> -->
     </body>
 
 </html>
