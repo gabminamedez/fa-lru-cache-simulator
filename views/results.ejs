@@ -70,11 +70,29 @@
                     </tr>
                     <tr>
                         <th scope="row">Average Memory Access Time:</th>
-                        <td>ns</td>
+                        <td><%= aat %>ns</td>
                     </tr>
                     <tr>
                         <th scope="row">Total Memory Access Time:</th>
-                        <td>ns</td>
+                        <td><%= tat %>ns</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Final Cache Memory</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Block #:</th>
+                        <% for(var i = 0; i < cache_data.length; i++){ %>
+                            <td><%= i %></td>
+                        <% } %>
+                    </tr>
+                    <tr>
+                        <th scope="row">Data:</th>
+                        <% for(var i = 0; i < cache_data.length; i++){ %>
+                            <td><%= cache_data[i] %></td>
+                        <% } %>
                     </tr>
                 </tbody>
             </table>

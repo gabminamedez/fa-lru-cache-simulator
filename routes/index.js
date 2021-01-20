@@ -34,14 +34,60 @@ router.post('/results', function(req, res, next){
         cache_data.push(null);
     }
 
+    var orig_age = null;
+    var orig_index = null;
+
     for(var i = 0; i < mm_size; i++){
+        var isFullMiss = true;
+
         for(var j = 0; j < cache_size; j++){
             if(cache_data[j] == null){
                 cache_data[j] = mm_sequence[i];
                 misses++;
+
+                cache_ages = cache_ages.map(a => a + 1);
+                cache_ages[j] = 0;
+
+                isFullMiss = false;
+                break;
+            }
+            else if(cache_data[j] == mm_sequence[i]){
+                orig_age = cache_ages[j];
+                orig_index = j;
+                hits++;
+
+                isFullMiss = false;
+                break;
             }
         }
+
+        if(orig_age != null){
+            for(var j = 0; j < cache_size; j++){
+                if(j == orig_index){
+                    cache_ages[j] = 0;
+                }
+
+                if(cache_ages[j] < orig_age){
+                    cache_ages[j]++;
+                }
+            }
+
+            orig_age = null;
+            orig_index = null;
+        }
+
+        if(isFullMiss){
+            var idx = cache_ages.indexOf(Math.max(...cache_ages));
+            cache_data[idx] = mm_sequence[i];
+            misses++;
+
+            cache_ages = cache_ages.map(a => a + 1);
+            cache_ages[idx] = 0;
+        }
     }
+
+    var aat = ((parseFloat(hits) / parseFloat(mm_size)) * parseFloat(cat)) + ((parseFloat(misses) / parseFloat(mm_size)) * parseFloat(miss_penalty));
+    var tat = (parseFloat(hits) * parseFloat(block_size) * parseFloat(cat)) + (parseFloat(misses) * parseFloat(block_size) * (parseFloat(cat) + parseFloat(mat))) + (parseFloat(misses) * parseFloat(cat));
 
     res.render('results', {
         cache_size: cache_size,
@@ -52,7 +98,10 @@ router.post('/results', function(req, res, next){
         mat: mat,
         miss_penalty: miss_penalty,
         hits: hits,
-        misses: misses
+        misses: misses,
+        cache_data: cache_data,
+        aat: aat,
+        tat: tat
     });
 });
 
