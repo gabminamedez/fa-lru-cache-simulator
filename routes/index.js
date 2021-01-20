@@ -24,6 +24,25 @@ router.post('/results', function(req, res, next){
 
     var miss_penalty = parseFloat(cat) + (parseFloat(mat) * parseFloat(block_size)) + parseFloat(cat);
 
+    var hits = 0;
+    var misses = 0;
+    var cache_ages = [];
+    var cache_data = [];
+
+    for(var i = 0; i < cache_size; i++){
+        cache_ages.push(0);
+        cache_data.push(null);
+    }
+
+    for(var i = 0; i < mm_size; i++){
+        for(var j = 0; j < cache_size; j++){
+            if(cache_data[j] == null){
+                cache_data[j] = mm_sequence[i];
+                misses++;
+            }
+        }
+    }
+
     res.render('results', {
         cache_size: cache_size,
         block_size: block_size,
@@ -31,7 +50,9 @@ router.post('/results', function(req, res, next){
         mm_sequence: mm_sequence,
         cat: cat,
         mat: mat,
-        miss_penalty: miss_penalty
+        miss_penalty: miss_penalty,
+        hits: hits,
+        misses: misses
     });
 });
 
