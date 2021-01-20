@@ -6,6 +6,7 @@ p {
     font-size: 1.25em;
 }
 
-#tip {
+#error {
     font-size: 1em;
+    color: red;
 }

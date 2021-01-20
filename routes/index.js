@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next){
-    res.render('index');
+    res.render('index', {
+        error: null
+    });
 });
 
 router.post('/results', function(req, res, next){
@@ -10,9 +12,15 @@ router.post('/results', function(req, res, next){
     var block_size = req.body.block_size;
     var mm_size = req.body.mm_size;
     var mm_sequence = req.body.mm_sequence;
-    mm_sequence.split(/[ ,]+/);
     var cat = req.body.cat;
     var mat = req.body.mat;
+
+    mm_sequence = mm_sequence.split(" ");
+    if(mm_size != mm_sequence.length) {
+        res.render('index', {
+            error: "ERROR: The amount of numbers you inputted in the sequence did not correspond to your indicated main memory size."
+        });
+    }
 
     var miss_penalty = parseFloat(cat) + (parseFloat(mat) * parseFloat(block_size)) + parseFloat(cat);
 
@@ -28,7 +36,9 @@ router.post('/results', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-    res.render('index');
+    res.render('index', {
+        error: null
+    });
 });
 
 module.exports = router;
